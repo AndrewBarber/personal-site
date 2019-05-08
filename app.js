@@ -1,6 +1,6 @@
-let express = require('express');
-let bodyParser = require('body-parser');
-let app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
 require('dotenv').config();
 
@@ -9,7 +9,7 @@ let port = process.env.PORT || 3000;
 
 // parse incoming requests
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // serve static files from /public
 app.use(express.static(__dirname + '/public'));
