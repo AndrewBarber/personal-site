@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  #index-banner.section.no-pad-bot
+    .container
+      .row
+        .col.s12.m6.l6
+            h1.header.centlefter.light-blue-text Get in contact..
+            h5.header.light It'll be lovely to chat!
+        form.col.s12(method="POST", action=post)
+          .row
+            .input-field.col.s6
+              i.material-icons.prefix person
+              input#first_name.validate(type='text')
+              label(for='first_name') First Name
+            .input-field.col.s6
+              i.material-icons.prefix group
+              input#last_name.validate(type='text')
+              label(for='last_name') Last Name
+          .row
+            .input-field.col.s6
+              i.material-icons.prefix phone_android
+              input#phone.validate(type='text')
+              label(for='phone') Phone Num
+            .input-field.col.s6
+              i.material-icons.prefix email
+              input#email.validate(type='email')
+              label(for='email') Email
+          .row
+            .input-field.col.s12
+              i.material-icons.prefix mode_edit
+              textarea#textarea1.materialize-textarea
+              label(for='textarea1') Your message
+          button.btn-large.waves-effect.waves-light.light-blue(type='submit', name='action')
+            | Submit
+            i.material-icons.right send
