@@ -1,28 +1,25 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const request = require('request');
 const nodemailer = require("nodemailer");
 
-
-
 // GET /
-router.get('/', (req, res, next) => {
-  return res.render('index', { title: 'Home' });
+router.get("/", (req, res, next) => {
+  return res.render("index", { title: "Home" });
 });
 
 // GET /about
-router.get('/about', (req, res, next) => {
+router.get("/about", (req, res, next) => {
   // Just home for now
-  return res.render('index', { title: 'Home' });
+  return res.render("index", { title: "Home" });
 });
 
 // GET /contact
-router.get('/contact', (req, res, next) => {
-    return res.render('contact', { title: 'Contact Me' });
+router.get("/contact", (req, res, next) => {
+  return res.render("contact", { title: "Contact Me" });
 });
 
 // POST /contact
-router.post('/contact', (req, res) => {
+router.post("/contact", (req, res) => {
   const output = `
     <h1>You have a new contact request!</h1>
     <h2>Contact Details</h2>
@@ -40,7 +37,7 @@ router.post('/contact', (req, res) => {
     port: process.env.NODEMAILER_PORT,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: process.env.NODEMAILER_USER, 
+      user: process.env.NODEMAILER_USER,
       pass: process.env.NODEMAILER_PASS
     }
   });
@@ -54,21 +51,24 @@ router.post('/contact', (req, res) => {
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
-    if (error){
-      res.render('contact', { title: 'Contact', mailerMessage: 'Error: message not sent' });
+    if (error) {
+      res.render("contact", {
+        title: "Contact",
+        mailerMessage: "Error: message not sent"
+      });
       return console.log(error);
-
-    } 
+    }
     console.log("Message sent: %s", info.messageId);
-    return res.render('contact', { title: 'Contact', mailerMessage: 'Message has been sent.' });
+    return res.render("contact", {
+      title: "Contact",
+      mailerMessage: "Message has been sent."
+    });
   });
-
 });
 
 // GET /work
-router.get('/work', (req, res, next) => {
-  return res.render('portfolio', { title: 'Work / Portfolio' });
+router.get("/work", (req, res, next) => {
+  return res.render("portfolio", { title: "Work / Portfolio" });
 });
-
 
 module.exports = router;
